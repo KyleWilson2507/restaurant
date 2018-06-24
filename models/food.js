@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var s2 = new schema
+var schema = new Schema
 ({
-	id:
+	code:
 	{
 		type: String,
 		required: true
@@ -30,4 +30,4 @@ var s2 = new schema
 	}
 });
 
-module.exports=mongoose.model('Food', s2);
+module.exports=mongoose.model('Food', schema);
