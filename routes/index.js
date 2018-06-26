@@ -18,6 +18,32 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/home', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+        res.render('shop/home', {title: 'Home', successMsg: successMsg, noMessages: !successMsg});
+});
+
+router.get('/products', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+        res.render('shop/products', {title: 'Branded Foods', successMsg: successMsg, noMessages: !successMsg});
+});
+
+router.get('/single', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+        res.render('shop/single', {title: 'Single Pane', successMsg: successMsg, noMessages: !successMsg});
+});
+
+router.get('/checkout.html', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+        res.render('shop/checkoutv2', {title: 'Checkout', successMsg: successMsg, noMessages: !successMsg});
+});
+
+router.get('/payment', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+        res.render('shop/payment', {title: 'Payment', successMsg: successMsg, noMessages: !successMsg});
+});
+
+
 router.get('/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});

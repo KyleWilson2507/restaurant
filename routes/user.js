@@ -19,9 +19,10 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
         });
-        res.render('user/profile', { orders: orders });
+        res.render('user/profile', {title: 'My Profile', orders: orders });
     });
 });
+
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -34,7 +35,7 @@ router.use('/', notLoggedIn, function (req, res, next) {
 
 router.get('/signup', function (req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+    res.render('user/signup', {title: 'Sign Up', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
@@ -52,8 +53,9 @@ router.post('/signup', passport.authenticate('local.signup', {
 
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+    res.render('user/signin', {title: 'Login', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
+
 
 router.post('/signin', passport.authenticate('local.signin', {
     failureRedirect: '/user/signin',
