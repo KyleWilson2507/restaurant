@@ -38,4 +38,11 @@ module.exports = function Cart(oldCart) {
         }
         return arr;
     };
+    
+    this.generateSingle = function(item, id) {
+        var storedItem = this.items[id];
+        var arr = [];
+            arr.push(storedItem);
+        return arr;
+    };
 };

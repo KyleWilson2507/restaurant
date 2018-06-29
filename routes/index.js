@@ -18,6 +18,29 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/product/:page', function (req, res, next) {
+    var page = req.params.page || 1; /* page - biến chứa số trang hiện tại (Lấy từ request) */
+    Food.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        if (page == 1){
+            for (var i = 0; i < docs.length && i < 6; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+            }
+        }
+        else
+        {
+            for (var i = (page - 1)*6; i < docs.length && i < 6*page; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        }
+        res.render('shop/index', {title: 'KemoShop', foods: productChunks,
+        current: page,
+        pages: Math.ceil(docs.length / 6)}); 
+    });
+ });
+
+
 router.get('/home', function (req, res, next) {
     var successMsg = req.flash('success')[0];
         res.render('shop/home', {title: 'Home', successMsg: successMsg, noMessages: !successMsg});
@@ -43,6 +66,21 @@ router.get('/payment', function (req, res, next) {
         res.render('shop/payment', {title: 'Payment', successMsg: successMsg, noMessages: !successMsg});
 });
 
+router.get('/single/:id', function(req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart({});
+    Food.findById(productId, function(err, product) {
+       if (err) {
+           return res.redirect('/');
+       }
+      cart.add(product, product.id);
+      var single = cart.generateArray();
+        res.render('shop/single', {foods: single});
+    });
+    
+
+});
+
 
 router.get('/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;
@@ -50,12 +88,12 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 
     Food.findById(productId, function(err, product) {
        if (err) {
-           return res.redirect('/');
+           return res.redirect(req.params);
        }
         cart.add(product, product.id);
         req.session.cart = cart;
         console.log(req.session.cart);
-        res.redirect('/');
+        res.redirect('back');
     });
 });
 

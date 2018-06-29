@@ -17,6 +17,7 @@ var app = express();
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 
 mongoose.connect('mongodb://localhost:27017/food');
 require('./config/passport');
@@ -24,6 +25,9 @@ require('./config/passport');
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
+
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -55,6 +59,7 @@ app.use(function(req, res, next) {
 
 app.use('/user', userRoutes);
 app.use('/', routes);
+app.use('/admin', adminRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,29 @@
+<!-- //for-mobile-apps -->
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- font-awesome icons -->
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="/js/move-top.js"></script>
+<script type="text/javascript" src="/js/easing.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){   
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    });
+  });
+</script>
 <!-- header -->
 	<div class="agileits_header">
 		<div class="w3l_offers">
-			<a href="/products">Today's special Offers !</a>
+			<a href="/product/1">Today's special Offers !</a>
 		</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -10,13 +32,9 @@
 			</form>
 		</div>
 		<div class="product_list_header">  
-			<form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="View your cart" class="button" />
-                </fieldset>
-            </form>
+			
+                    <a href="/shopping-cart/"><input type="submit" name="submit" value="View your cart" class="button" />
+            </a>
 		</div>
 		<div class="w3l_header_right">
 			<ul>
@@ -25,14 +43,15 @@
 					<div class="mega-dropdown-menu">
 						<div class="w3ls_vegetables">
 							<ul class="dropdown-menu drp-mnu">
-						{{# if login }}
+						
                             <li><a href="/user/profile">My Account</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/user/logout">Logout</a></li>
-                        {{ else }}
-                            <li><a href="/user/signin">Login</a></li>
+                     
+                            <li><a href="/user/signin">Sign in</a></li>
                             <li><a href="/user/signup">Sign up</a></li>
-                        {{/if}}
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/user/logout">Logout</a></li>
+                        
 							</ul>
 						</div>                  
 					</div>	
@@ -70,7 +89,7 @@
 				<ul class="special_items">
 					<li><a href="events.html">Events</a><i>/</i></li>
 					<li><a href="about.html">About Us</a><i>/</i></li>
-					<li><a href="/products">Best Deals</a><i>/</i></li>
+					<li><a href="/product/1">Best Deals</a><i>/</i></li>
 					<li><a href="services.html">Services</a></li>
 				</ul>
 			</div>
@@ -92,7 +111,7 @@
 			</ul>
 		</div>
 	</div>
-<!-- //products-breadcrumb -->
+<!-- //product/1-breadcrumb -->
 <!-- //header -->
 <script>
 $(document).ready(function(){
@@ -108,3 +127,4 @@ $(document).ready(function(){
     );
 });
 </script>
+{{> navleft}}

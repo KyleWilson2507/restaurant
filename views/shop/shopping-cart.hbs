@@ -1,3 +1,6 @@
+{{> navbar}}
+<br> </br> <h3> My Cart</h3>
+<br> </br>
 {{# if foods }}
     <div class="row">
         <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
@@ -5,6 +8,7 @@
                 {{# each foods }}
                     <li class="list-group-item">
                         <span class="badge">{{ this.qty }}</span>
+                        <img src="{{this.item.img}}" style="width: 20%; height: 20%;"> </img>
                         <strong>{{ this.item.title }}</strong>
                         <span class="label label-success">${{ this.price }}</span>
                         <div class="btn-group">
