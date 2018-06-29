@@ -132,6 +132,7 @@
                     <ul class="list-group">
                         {{# each this.items }}
                             <li class="list-group-item">
+                             <img src="{{this.item.img}}" style="width: 10%; height: 10%;"> </img>
                                 <span class="badge">{{ this.price }}</span>
                                 {{ this.item.title }} | {{ this.qty }} Units
                             </li>
